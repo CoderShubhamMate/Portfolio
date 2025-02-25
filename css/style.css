@@ -1,0 +1,142 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Exo 2', sans-serif;
+    background: #000;
+    color: #00ffff;
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Overlays */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Loading Screen */
+.loading-content {
+    text-align: center;
+    animation: pulse 2s infinite;
+}
+
+.progress-text {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+    margin-top: 20px;
+}
+
+/* Enter Instructions */
+.instruction-content {
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.instruction-content h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffff;
+    text-shadow: 0 0 20px #00ffff;
+    margin-bottom: 20px;
+    animation: glow 2s infinite alternate;
+}
+
+/* Welcome Overlay */
+.welcome-content {
+    background: rgba(0, 20, 40, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid #00ffff;
+    box-shadow: 0 0 20px #00ffff;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Buttons */
+.enter-button, #welcome-dismiss {
+    background: transparent;
+    border: 2px solid #00ffff;
+    color: #00ffff;
+    padding: 10px 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.enter-button:hover, #welcome-dismiss:hover {
+    background: #00ffff;
+    color: #000;
+    box-shadow: 0 0 20px #00ffff;
+}
+
+/* Error Overlay */
+.error-content {
+    background: rgba(40, 0, 0, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid #ff0000;
+    box-shadow: 0 0 20px #ff0000;
+    text-align: center;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff; }
+    to { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .instruction-content h1 {
+        font-size: 1.5em;
+    }
+    
+    .welcome-content {
+        margin: 20px;
+        padding: 20px;
+    }
+    
+    .enter-button, #welcome-dismiss {
+        font-size: 1em;
+        padding: 8px 16px;
+    }
+}

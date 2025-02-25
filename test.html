@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Three.js Audio Test</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+        #info {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-family: monospace;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+        }
+    </style>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.157.0/build/three.module.js"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="info">Click anywhere to test audio</div>
+    <script type="module">
+        import * as THREE from 'three';
+
+        // Set up scene
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Add a simple cube
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+        camera.position.z = 5;
+
+        // Set up audio
+        const listener = new THREE.AudioListener();
+        camera.add(listener);
+        const sound = new THREE.Audio(listener);
+
+        // Create a simple click sound
+        function createClickSound() {
+            const context = listener.context;
+            const sampleRate = context.sampleRate;
+            const length = 0.1 * sampleRate; // 100ms
+            const buffer = context.createBuffer(1, length, sampleRate);
+            const data = buffer.getChannelData(0);
+
+            for (let i = 0; i < length; i++) {
+                data[i] = Math.random() * 0.2; // White noise
+            }
+
+            sound.setBuffer(buffer);
+            sound.setVolume(0.5);
+            console.log('Click sound created');
+        }
+
+        // Initialize audio on first click
+        document.addEventListener('click', () => {
+            if (listener.context.state === 'suspended') {
+                listener.context.resume();
+            }
+            if (!sound.buffer) {
+                createClickSound();
+            }
+            sound.play();
+        }, { once: true });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>

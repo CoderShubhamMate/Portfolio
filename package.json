@@ -1,0 +1,17 @@
+{
+  "name": "sci-fi-portfolio",
+  "version": "1.0.0",
+  "description": "A futuristic 3D portfolio website with sci-fi theme",
+  "main": "js/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8888"
+  },
+  "dependencies": {
+    "nipplejs": "^0.10.1",
+    "sci-fi-portfolio": "file:",
+    "three": "^0.160.0"
+  },
+  "author": "",
+  "license": "MIT"
+}

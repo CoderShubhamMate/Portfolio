@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sci-Fi Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@400;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.157.0/build/three.module.js"
+        }
+    }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.10.1/nipplejs.min.js"></script>
+</head>
+<body>
+    <canvas id="scene"></canvas>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="overlay">
+        <div class="loading-content">
+            <h2>Initializing Portal</h2>
+            <div class="progress-text">Portal Stabilization: 0%</div>
+        </div>
+    </div>
+
+    <!-- Enter Instruction -->
+    <div id="enter-instruction" class="overlay hidden">
+        <div class="instruction-content">
+    <h1>Press ENTER to Breach the Nexus</h1>
+    <div id="tooltip" class="hidden">Access the Core: Press ENTER</div>
+            <p>Access the Digital Archive Hub</p>
+            <button id="enter-button" class="enter-button">BREACH THE NEXUS</button>
+        </div>
+    </div>
+
+    <!-- Welcome Overlay -->
+    <div id="welcome-overlay" class="overlay hidden">
+        <div class="welcome-content">
+            <h2>Welcome to the Digital Archive</h2>
+            <p>Navigate using Arrow keys</p>
+            <button id="welcome-dismiss">Enter Archive</button>
+        </div>
+    </div>
+
+    <!-- Error Overlay -->
+    <div id="error-overlay" class="overlay hidden">
+        <div class="error-content">
+            <h2>System Error</h2>
+            <p id="error-message">An error has occurred.</p>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
