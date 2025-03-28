@@ -10,12 +10,18 @@ function Home() {
         <p className="text-xl md:text-2xl mt-4 text-[#BB86FC] font-['Roboto']">
           Crafting Scalable Code & Innovative Solutions
         </p>
-        <button className="mt-6 px-6 py-3 bg-[#03DAC6] text-[#121212] rounded-md hover:bg-[#1DB954] transition">
+        <a
+          href="#portfolio"
+          className="mt-6 inline-block px-6 py-3 bg-[#03DAC6] text-[#121212] rounded-md hover:bg-[#1DB954] transition"
+        >
           Explore My Work
-        </button>
+        </a>
       </div>
       <div className="mt-8">
-        <InteractiveModel url="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Avocado/glTF-Binary/Avocado.glb" />
+        <InteractiveModel
+          url="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Avocado/glTF-Binary/Avocado.glb"
+          scale={10}
+        />
       </div>
     </section>
   );
